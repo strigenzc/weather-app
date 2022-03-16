@@ -5,11 +5,12 @@ body{
 h1{
 color:  #22313f;
 display: block;
-font-size: 29px;
-font-family: monospace;
+font-family: 'Nixie One', cursive;
+font-size: x-large;
 font-weight: 400;
 text-align: left;
 width: 326px;
+padding: 0px 0px 20px;
 margin:0px 0px 15px;
 }
 
@@ -36,6 +37,10 @@ footer{
   color: #34495e; 
 }
 
+button{
+  font-family: 'Roboto', sans-serif;
+}
+
 .weather-app {
   border: 2px solid #22313f;
   border-radius: 10px;
@@ -49,6 +54,7 @@ footer{
 
 .temperature {
   font-size: 70px;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1;
   color: #34495e; 
@@ -78,6 +84,21 @@ footer{
 }
 
 .basic-info {
-    position: relative;
     text-align: left;
+    font-family: 'Lato', sans-serif;
+}
+
+.week-days {
+font-family: 'Lato', sans-serif;
+}
+
+.other-info {
+  text-decoration: none;
+font-family: 'Lato', sans-serif;
+color: #34495e;
+}
+
+.week-temp {
+  font-family: 'Lato', sans-serif;
+  
 }

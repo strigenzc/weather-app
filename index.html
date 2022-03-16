@@ -13,6 +13,10 @@
       crossorigin="anonymous"
     />
     <script src="https://kit.fontawesome.com/a3e388b827.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Graduate&family=Lato:wght@100&family=Nixie+One&family=Pacifico&family=Roboto:wght@100&display=swap" 
+rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -57,9 +61,9 @@
             </div>
           </div>
           <div class="col-6"><br><br>
-            <ul>
+            <u class="other-info">
               <li>Humidity: <span id="humidity"> % </span></li>
-              <li>Wind: <span id="wind-speed"> km/hr </span></li>
+              <li>Wind: <span id="wind-speed"> km/hr </span></li></u>
             </ul>
             <div
               class="btn-group"
@@ -77,22 +81,22 @@
     <div class="daily-forecast">
         <div class="row">
             <div class="col-2">
-                Saturday <br>23°<br><i class="fa-solid fa-cloud"></i>
+              <span class="week-days"> Saturday</span> <br><span class=week-temp>23°</span><br><i class="fa-solid fa-cloud"></i>
             </div>
             <div class="col-2">
-                Sunday <br>22°<br><i class="fa-regular fa-sun"></i>
+              <span class="week-days"> Sunday</span><br><span class=week-temp>22°</span><br><i class="fa-regular fa-sun"></i>
             </div>
             <div class="col-2">
-                Monday <br>25°<br><i class="fa-solid fa-temperature-three-quarters"></i>
+                <span class="week-days"> Monday</span> <br><span class=week-temp>25°</span><br><i class="fa-solid fa-temperature-three-quarters"></i>
             </div>
             <div class="col-2">
-                Tuesday <br>19°<br><i class="fa-solid fa-umbrella"></i>
+                <span class="week-days"> Tuesday</span><br><span class=week-temp>19°</span><br><i class="fa-solid fa-umbrella"></i>
             </div>
             <div class="col-2">
-                Wednesday <br>23°<br><i class="fa-solid fa-bolt"></i>
+               <span class="week-days"> Wednesday</span> <br><span class=week-temp>23°</span><br><i class="fa-solid fa-bolt"></i>
             </div>
             <div class="col-2">
-              Thursday <br>23°<br><i class="fa-solid fa-cloud-rain"></i>
+           <span class="week-days"> Thursday</span><br><span class=week-temp>29°</span><br><i class="fa-solid fa-cloud-rain"></i>
             </div><br><br>
         </div>
     </div>
