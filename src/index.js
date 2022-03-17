@@ -15,8 +15,8 @@ console.log(response.data);
 }
 
 let apiKey = "7bcf0da6ca80b20c501d86d32cc003a7";
-let cityname = "New York"
-let units = "metric"
+let cityname = "Chicago";
+let units = "metric";
 let apiURL =
   `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=${apiKey}&units=${units}`;
 
