@@ -86,6 +86,7 @@ button{
 .basic-info {
     text-align: left;
     font-family: 'Lato', sans-serif;
+    padding: 5px 0px;
 }
 
 .week-days {
@@ -93,7 +94,7 @@ font-family: 'Lato', sans-serif;
 }
 
 .other-info {
-  text-decoration: none;
+text-decoration: none;
 font-family: 'Lato', sans-serif;
 color: #34495e;
 }
@@ -102,3 +103,6 @@ color: #34495e;
   font-family: 'Lato', sans-serif; 
 }
 
+.locationbutton {
+  padding: 15px 0px;
+}
