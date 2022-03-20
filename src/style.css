@@ -62,6 +62,7 @@ button{
   font-weight: 400;
   line-height: 1;
   color: #34495e; 
+  text-decoration: none;
 }
 
 .weather-icon {
@@ -70,10 +71,22 @@ button{
   margin-right: 10px;
 }
 
-.units {
+.weather-temperature .units {
    position: relative;
    top: -32px;
    color: #34495e; 
+}
+
+.weather-temperature .active{
+color: #34495e;
+text-decoration: none;
+cursor: default;
+}
+
+.weather-temperature .active{
+color: #34495e;
+text-decoration: none;
+cursor: default;
 }
 
 .weather-search {
