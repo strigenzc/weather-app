@@ -116,10 +116,15 @@ font-family: 'Lato', sans-serif;
 color: #34495e;
 }
 
-.week-temp {
+.week-temp-min {
+  font-family: 'Lato', sans-serif; 
+}
+
+.week-temp-max {
   font-family: 'Lato', sans-serif; 
 }
 
 .locationbutton {
   padding: 15px 0px;
 }
+
