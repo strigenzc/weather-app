@@ -93,6 +93,8 @@ function convertToCelsius(event) {
 
 let celsiusTemperature = null;
 
+displayForecast ();
+
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
@@ -177,3 +179,37 @@ currentLocation.addEventListener("click", getPosition);
      );
    }
  }
+
+ //anything below relates to forecast
+    
+ function displayForecast() {
+   let forecastElement = document.querySelector("#forecast");
+
+   let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
+
+   let forecastHTML = `<div class="row">`;
+   days.forEach(function (day) {
+     forecastHTML =
+       forecastHTML +
+       `
+            <div class="col-2">
+              <span class="week-days"> ${day} </span> <br>
+              <div class="weather-forecast-temperatures">
+                <span class="week-temp-max"> 18° || </span>
+              <span class=week-temp-min>23°</span><br>
+              </div>
+              <img class = "sunicon"
+              width = "40"
+              height = "40"
+              src="https://lh3.googleusercontent.com/tq_uZYGAnbP-qM_P_CgmwhrDIV7nVUQvmcMepF422fdSlFgfZTBNt-vup3V2Gc9VUa2E8Eu_5PONV33j5ClAem41_cJjEPtHr9zTHfGU6stlgxbyVsB9NtVSpCzrvrMZc06DcQk_DJvoNyQvYTksPBDdKKur9wJ4fAnmyFHjHTdweRjG-trNeHv6T-8T2TWlOklXzBIJCAW4w1Td6_7beiW9EXQrga6o58iqBAMOies2htFEZPNBWgxmDpg1IV1WpplnzxsdnFcGWjpWOSkF6WiGbqPexGzWu0nbhuTiTWKohaSI5CLysM9alFG8trbOGRWnyamg-faj_Wv7u8x0saF_InE3Hxkgc2bFjSzVw6_PiJ569GC5CQqTyGZ8Jc0HMg1CnOklBmmJWIo-AY7UglcfmK38lPSGGeCbwTJ7ukBMM35IvUalnEM7WljxgmxPPadVABgTVzCGKws05JyxCdVlB3a2sAkLnezTkxWmLUcHzNgLZAAc2HpRCQzT0KJBX-InLTosuzg1JCcWRIldZb4xPwjCQSOGWAembK9-pudKmnM8WflKST6LTyiBb1v_o0QZzVqN1J6RRB9IIApAEKM45FCMiLs4hZ-N38C1BXhTyZmW84W3tZg88RF0MJB-h3RkAlD2opiDV5c6NKvYvDYqYPKShmTWnhdbXQBW5Lptqp5MyMaPhKhBFmmgbYNhfYpf5w929tEwxpNruThOgAH-bQ=s100-no?authuser=0"/>
+                </div>
+              `;
+       ;
+   });
+
+   forecastHTML = forecastHTML + `</div>`;
+   forecastElement.innerHTML = forecastHTML;
+   console.log(forecastHTML);
+ }
+
+     
