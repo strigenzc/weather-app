@@ -24,36 +24,51 @@ function formatDate(timestamp) {
   return `Last updated ${day} ${hours}:${minutes}`;
 }
 
-//anything below relates to forecast 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  return days[day];
+}
+
+//relates to forecast 
  function displayForecast(response) {
-  let forecast = response.data.daily;
+   let forecast = response.data.daily;
    let forecastElement = document.querySelector("#forecast");
 
-   let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
-
    let forecastHTML = `<div class="row">`;
-   days.forEach(function (day) {
-     forecastHTML =
-       forecastHTML +
-       `
-            <div class="col-2">
-              <span class="week-days"> ${day} </span> <br>
-              <div class="weather-forecast-temperatures">
-                <span class="week-temp-max"> 18° || </span>
-              <span class=week-temp-min>23°</span><br>
-              </div>
-              <img class = "sunicon"
-              width = "40"
-              height = "40"
-              src="https://lh3.googleusercontent.com/tq_uZYGAnbP-qM_P_CgmwhrDIV7nVUQvmcMepF422fdSlFgfZTBNt-vup3V2Gc9VUa2E8Eu_5PONV33j5ClAem41_cJjEPtHr9zTHfGU6stlgxbyVsB9NtVSpCzrvrMZc06DcQk_DJvoNyQvYTksPBDdKKur9wJ4fAnmyFHjHTdweRjG-trNeHv6T-8T2TWlOklXzBIJCAW4w1Td6_7beiW9EXQrga6o58iqBAMOies2htFEZPNBWgxmDpg1IV1WpplnzxsdnFcGWjpWOSkF6WiGbqPexGzWu0nbhuTiTWKohaSI5CLysM9alFG8trbOGRWnyamg-faj_Wv7u8x0saF_InE3Hxkgc2bFjSzVw6_PiJ569GC5CQqTyGZ8Jc0HMg1CnOklBmmJWIo-AY7UglcfmK38lPSGGeCbwTJ7ukBMM35IvUalnEM7WljxgmxPPadVABgTVzCGKws05JyxCdVlB3a2sAkLnezTkxWmLUcHzNgLZAAc2HpRCQzT0KJBX-InLTosuzg1JCcWRIldZb4xPwjCQSOGWAembK9-pudKmnM8WflKST6LTyiBb1v_o0QZzVqN1J6RRB9IIApAEKM45FCMiLs4hZ-N38C1BXhTyZmW84W3tZg88RF0MJB-h3RkAlD2opiDV5c6NKvYvDYqYPKShmTWnhdbXQBW5Lptqp5MyMaPhKhBFmmgbYNhfYpf5w929tEwxpNruThOgAH-bQ=s100-no?authuser=0"/>
-                </div>
-              `;
-       ;
+   forecast.forEach(function (forecastDay, index) {
+     if (index < 6) {
+         forecastHTML =
+           forecastHTML +
+           `
+      <div class="col-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].description
+          }@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> ${Math.round(
+            forecastDay.temp.max
+          )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temp.min
+          )}° </span>
+        </div>
+      </div>
+  `;
+     }
    });
 
    forecastHTML = forecastHTML + `</div>`;
    forecastElement.innerHTML = forecastHTML;
  }
+
 
  function getForecast(coordinates) {
    console.log(coordinates);
@@ -71,6 +86,7 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind-speed");
   let humidityElement = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
+  let forecastIcon = document.querySelector("#forecastIcon");
 
   celsiusTemperature = response.data.main.temp;
 
@@ -80,6 +96,12 @@ function displayTemperature(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
+  forecastIcon.innerHTML = setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+  changeIcon(iconElement, response.data.weather[0].description);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
