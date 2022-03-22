@@ -10,7 +10,6 @@ function formatDate(timestamp) {
     minutes = `0${minutes}`;
   }
 
-  let dayList = date.getDay();
   let days = [
     "Sunday",
     "Monday",
@@ -25,8 +24,46 @@ function formatDate(timestamp) {
   return `Last updated ${day} ${hours}:${minutes}`;
 }
 
+//anything below relates to forecast 
+ function displayForecast(response) {
+  let forecast = response.data.daily;
+   let forecastElement = document.querySelector("#forecast");
+
+   let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
+
+   let forecastHTML = `<div class="row">`;
+   days.forEach(function (day) {
+     forecastHTML =
+       forecastHTML +
+       `
+            <div class="col-2">
+              <span class="week-days"> ${day} </span> <br>
+              <div class="weather-forecast-temperatures">
+                <span class="week-temp-max"> 18° || </span>
+              <span class=week-temp-min>23°</span><br>
+              </div>
+              <img class = "sunicon"
+              width = "40"
+              height = "40"
+              src="https://lh3.googleusercontent.com/tq_uZYGAnbP-qM_P_CgmwhrDIV7nVUQvmcMepF422fdSlFgfZTBNt-vup3V2Gc9VUa2E8Eu_5PONV33j5ClAem41_cJjEPtHr9zTHfGU6stlgxbyVsB9NtVSpCzrvrMZc06DcQk_DJvoNyQvYTksPBDdKKur9wJ4fAnmyFHjHTdweRjG-trNeHv6T-8T2TWlOklXzBIJCAW4w1Td6_7beiW9EXQrga6o58iqBAMOies2htFEZPNBWgxmDpg1IV1WpplnzxsdnFcGWjpWOSkF6WiGbqPexGzWu0nbhuTiTWKohaSI5CLysM9alFG8trbOGRWnyamg-faj_Wv7u8x0saF_InE3Hxkgc2bFjSzVw6_PiJ569GC5CQqTyGZ8Jc0HMg1CnOklBmmJWIo-AY7UglcfmK38lPSGGeCbwTJ7ukBMM35IvUalnEM7WljxgmxPPadVABgTVzCGKws05JyxCdVlB3a2sAkLnezTkxWmLUcHzNgLZAAc2HpRCQzT0KJBX-InLTosuzg1JCcWRIldZb4xPwjCQSOGWAembK9-pudKmnM8WflKST6LTyiBb1v_o0QZzVqN1J6RRB9IIApAEKM45FCMiLs4hZ-N38C1BXhTyZmW84W3tZg88RF0MJB-h3RkAlD2opiDV5c6NKvYvDYqYPKShmTWnhdbXQBW5Lptqp5MyMaPhKhBFmmgbYNhfYpf5w929tEwxpNruThOgAH-bQ=s100-no?authuser=0"/>
+                </div>
+              `;
+       ;
+   });
+
+   forecastHTML = forecastHTML + `</div>`;
+   forecastElement.innerHTML = forecastHTML;
+ }
+
+ function getForecast(coordinates) {
+   console.log(coordinates);
+  let apiKey = "7bcf0da6ca80b20c501d86d32cc003a7";
+   let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+   axios.get(apiURL).then(displayForecast);
+   }
+ 
+ //changing the inner HTML to match current weather data
 function displayTemperature(response) {
-  //changing the inner HTML to match current weather data
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
   let dateElement = document.querySelector("#currentDate");
@@ -49,6 +86,8 @@ function displayTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 changeIcon(iconElement, response.data.weather[0].description);
+
+getForecast (response.data.coord);
 }
 
 function search(cityname) {
@@ -65,8 +104,6 @@ function handleSubmit(event) {
   search(cityInputElement.value);
   console.log(cityInputElement.value);
 }
-
-//current location button
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
@@ -93,14 +130,13 @@ function convertToCelsius(event) {
 
 let celsiusTemperature = null;
 
-displayForecast ();
-
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", convertToCelsius);
 
+//current location button
 function getWeatherLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -109,6 +145,7 @@ function getWeatherLocation(position) {
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`;
   axios.get(apiURL).then(displayTemperature);
 }
+
 function getPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getWeatherLocation);
@@ -117,8 +154,7 @@ function getPosition(event) {
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getPosition);
 
-
-//my attempt at changing the temp- does not work
+//my attempt at changing the temp icons-
  function changeIcon(iconElement, iconChange) {
    if (
      iconChange === "rainy" ||
@@ -179,37 +215,5 @@ currentLocation.addEventListener("click", getPosition);
      );
    }
  }
-
- //anything below relates to forecast
-    
- function displayForecast() {
-   let forecastElement = document.querySelector("#forecast");
-
-   let days = ["Thursday", "Friday", "Saturday", "Sunday", "Monday"];
-
-   let forecastHTML = `<div class="row">`;
-   days.forEach(function (day) {
-     forecastHTML =
-       forecastHTML +
-       `
-            <div class="col-2">
-              <span class="week-days"> ${day} </span> <br>
-              <div class="weather-forecast-temperatures">
-                <span class="week-temp-max"> 18° || </span>
-              <span class=week-temp-min>23°</span><br>
-              </div>
-              <img class = "sunicon"
-              width = "40"
-              height = "40"
-              src="https://lh3.googleusercontent.com/tq_uZYGAnbP-qM_P_CgmwhrDIV7nVUQvmcMepF422fdSlFgfZTBNt-vup3V2Gc9VUa2E8Eu_5PONV33j5ClAem41_cJjEPtHr9zTHfGU6stlgxbyVsB9NtVSpCzrvrMZc06DcQk_DJvoNyQvYTksPBDdKKur9wJ4fAnmyFHjHTdweRjG-trNeHv6T-8T2TWlOklXzBIJCAW4w1Td6_7beiW9EXQrga6o58iqBAMOies2htFEZPNBWgxmDpg1IV1WpplnzxsdnFcGWjpWOSkF6WiGbqPexGzWu0nbhuTiTWKohaSI5CLysM9alFG8trbOGRWnyamg-faj_Wv7u8x0saF_InE3Hxkgc2bFjSzVw6_PiJ569GC5CQqTyGZ8Jc0HMg1CnOklBmmJWIo-AY7UglcfmK38lPSGGeCbwTJ7ukBMM35IvUalnEM7WljxgmxPPadVABgTVzCGKws05JyxCdVlB3a2sAkLnezTkxWmLUcHzNgLZAAc2HpRCQzT0KJBX-InLTosuzg1JCcWRIldZb4xPwjCQSOGWAembK9-pudKmnM8WflKST6LTyiBb1v_o0QZzVqN1J6RRB9IIApAEKM45FCMiLs4hZ-N38C1BXhTyZmW84W3tZg88RF0MJB-h3RkAlD2opiDV5c6NKvYvDYqYPKShmTWnhdbXQBW5Lptqp5MyMaPhKhBFmmgbYNhfYpf5w929tEwxpNruThOgAH-bQ=s100-no?authuser=0"/>
-                </div>
-              `;
-       ;
-   });
-
-   forecastHTML = forecastHTML + `</div>`;
-   forecastElement.innerHTML = forecastHTML;
-   console.log(forecastHTML);
- }
-
-     
+ 
+search("New York");
