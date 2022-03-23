@@ -184,7 +184,7 @@ currentLocation.addEventListener("click", getPosition);
      iconChange === "heavy rain"
    ) {
      iconElement.setAttribute(
-       "src"="images/rain.png"
+       src="images/rain.png"
      );
    } else if (
      iconChange === "cloudy" ||
@@ -195,7 +195,7 @@ currentLocation.addEventListener("click", getPosition);
      iconChange === "broken clouds"
    ) {
      iconElement.setAttribute(
-       "src"= "cloudy.png"
+       src= "cloudy.png"
      );
    } else if (
      iconChange === "snow" ||
@@ -203,7 +203,7 @@ currentLocation.addEventListener("click", getPosition);
      iconChange === "snow storm"
    ) {
      iconElement.setAttribute(
-       "src"= "snow.png",
+       src= "snow.png",
      );
    } else if (
      iconChange === "sunny" ||
@@ -212,7 +212,7 @@ currentLocation.addEventListener("click", getPosition);
      iconChange === "sun"
    ) {
      iconElement.setAttribute(
-       "src" = "sun.png"
+       src = "sun.png"
      );
    } else if (
      iconChange === "windy" ||
@@ -221,7 +221,7 @@ currentLocation.addEventListener("click", getPosition);
      iconChange === "very windy" 
    ) {
      iconElement.setAttribute(
-       "src"= "windy.png"
+       src= "windy.png"
      );
     } else if (
      iconChange === "stormy" ||
@@ -230,12 +230,12 @@ currentLocation.addEventListener("click", getPosition);
      iconChange === "thunderstorms"
    ) {
      iconElement.setAttribute(
-       "src" = "lightning.png"
+       src = "lightning.png"
      );
    } 
    else {
      iconElement.setAttribute(
-       "src" = "rainbow.png"
+       src= "rainbow.png"
      );
    }
  }
