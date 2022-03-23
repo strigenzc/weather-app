@@ -26,22 +26,30 @@ function formatDate(timestamp) {
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   return days[day];
 }
 
-//relates to forecast 
- function displayForecast(response) {
-   let forecast = response.data.daily;
-   let forecastElement = document.querySelector("#forecast");
+//relates to forecast
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
 
-   let forecastHTML = `<div class="row">`;
-   forecast.forEach(function (forecastDay, index) {
-     if (index < 6) {
-         forecastHTML =
-           forecastHTML +
-           `
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
       <div class="col-2">
         <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
         <img
@@ -61,21 +69,21 @@ function formatDay(timestamp) {
         </div>
       </div>
   `;
-     }
-   });
+    }
+  });
 
-   forecastHTML = forecastHTML + `</div>`;
-   forecastElement.innerHTML = forecastHTML;
- }
- 
- function getForecast(coordinates) {
-   console.log(coordinates);
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
   let apiKey = "7bcf0da6ca80b20c501d86d32cc003a7";
-   let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-   axios.get(apiURL).then(displayForecast);
-   }
- 
- //changing the inner HTML to match current weather data
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
+}
+
+//changing the inner HTML to match current weather data
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -94,20 +102,15 @@ function displayTemperature(response) {
   descriptionElement.innerHTML = response.data.weather[0].description;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   humidityElement.innerHTML = Math.round(response.data.main.humidity);
-  forecastIcon.innerHTML = setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-  changeIcon(iconElement, response.data.weather[0].description);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-changeIcon(iconElement, response.data.weather[0].description);
+  changeIcon(iconElement, response.data.weather[0].description);
 
-getForecast (response.data.coord);
+  getForecast(response.data.coord);
 }
 
 function search(cityname) {
@@ -175,69 +178,61 @@ let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getPosition);
 
 //my attempt at changing the temp icons-
- function changeIcon(iconElement, iconChange) {
-   if (
-     iconChange === "rainy" ||
-     iconChange === "rain" ||
-     iconChange === "light rain" ||
-     iconChange === "drizzle" ||
-     iconChange === "heavy rain"
-   ) {
-     iconElement.setAttribute(
-       src="images/rain.png"
-     );
-   } else if (
-     iconChange === "cloudy" ||
-     iconChange === "overcast clouds" ||
-     iconChange === "clouds" ||
-     iconChange === "few clouds" ||
-     iconChange === "scattered clouds" ||
-     iconChange === "broken clouds"
-   ) {
-     iconElement.setAttribute(
-       src= "cloudy.png"
-     );
-   } else if (
-     iconChange === "snow" ||
-     iconChange === "snowy" ||
-     iconChange === "snow storm"
-   ) {
-     iconElement.setAttribute(
-       src= "snow.png",
-     );
-   } else if (
-     iconChange === "sunny" ||
-     iconChange === "hot" ||
-     iconChange === "clear sky" ||
-     iconChange === "sun"
-   ) {
-     iconElement.setAttribute(
-       src = "sun.png"
-     );
-   } else if (
-     iconChange === "windy" ||
-     iconChange === "wind" ||
-     iconChange === "light winds" ||
-     iconChange === "very windy" 
-   ) {
-     iconElement.setAttribute(
-       src= "windy.png"
-     );
-    } else if (
-     iconChange === "stormy" ||
-     iconChange === "storms" ||
-     iconChange === "storm" ||
-     iconChange === "thunderstorms"
-   ) {
-     iconElement.setAttribute(
-       src = "lightning.png"
-     );
-   } 
-   else {
-     iconElement.setAttribute(
-       src= "rainbow.png"
-     );
-   }
- }
- 
+function changeIcon(iconElement, iconChange) {
+  if (
+    iconChange === "rainy" ||
+    iconChange === "rain" ||
+    iconChange === "light rain" ||
+    iconChange === "drizzle" ||
+    iconChange === "moderate rain" ||
+    iconChange === "heavy rain"
+  ) {
+    iconElement.setAttribute("src", "images/rain.png");
+  } else if (
+    iconChange === "cloudy" ||
+    iconChange === "overcast clouds" ||
+    iconChange === "clouds" ||
+    iconChange === "few clouds" ||
+    iconChange === "scattered clouds" ||
+    iconChange === "broken clouds"
+  ) {
+    iconElement.setAttribute("src", "images/cloudy.png");
+  } else if (
+    iconChange === "snow" ||
+    iconChange === "snowy" ||
+    iconChange === "moderate snow" ||
+    iconChange === "light snow" ||
+    iconChange === "heavy snow" ||
+    iconChange === "snow storm"
+  ) {
+    iconElement.setAttribute("src", "images/snow.png");
+  } else if (
+    iconChange === "sunny" ||
+    iconChange === "hot" ||
+    iconChange === "clear sky" ||
+    iconChange === "sun"
+  ) {
+    iconElement.setAttribute("src", "images/sun.png");
+  } else if (
+    iconChange === "windy" ||
+    iconChange === "wind" ||
+    iconChange === "light wind" ||
+    iconChange === "moderate wind" ||
+    iconChange === "heavy wind" ||
+    iconChange === "light winds" ||
+    iconChange === "very windy"
+  ) {
+    iconElement.setAttribute("src", "images/windy.png");
+  } else if (
+    iconChange === "stormy" ||
+    iconChange === "storms" ||
+    iconChange === "storm" ||
+    iconChange === "thunderstorms"
+  ) {
+    iconElement.setAttribute("src", "images/lightning.png");
+  } else {
+    iconElement.setAttribute("src", "images/rainbow.png");
+  }
+}
+
 search("New York");
