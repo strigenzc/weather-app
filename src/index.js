@@ -53,9 +53,7 @@ function displayForecast(response) {
       <div class="col-2">
         <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
         <img
-          src="http://openweathermap.org/img/wn/${
-            forecastDay.weather[0].description
-          }@2x.png"
+          src="${changeIcon(forecastDay.weather[0].description)}"
           alt=""
           width="42"
         />
@@ -92,7 +90,6 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind-speed");
   let humidityElement = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
-  let forecastIcon = document.querySelector("#forecastIcon");
 
   celsiusTemperature = response.data.main.temp;
 
@@ -108,7 +105,8 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
-  changeIcon(iconElement, response.data.weather[0].description);
+iconElement = changeIcon(response.data.weather[0].description);
+changeIcon(iconElement, response.data.weather[0].description);
 
   getForecast(response.data.coord);
 }
@@ -178,7 +176,8 @@ let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getPosition);
 
 //my attempt at changing the temp icons-
-function changeIcon(iconElement, iconChange) {
+function changeIcon(iconChange) {
+  let icon = "";
   if (
     iconChange === "rainy" ||
     iconChange === "rain" ||
@@ -187,7 +186,7 @@ function changeIcon(iconElement, iconChange) {
     iconChange === "moderate rain" ||
     iconChange === "heavy rain"
   ) {
-    iconElement.setAttribute("src", "images/rain.png");
+    icon = "images/rain.png"
   } else if (
     iconChange === "cloudy" ||
     iconChange === "overcast clouds" ||
@@ -196,7 +195,7 @@ function changeIcon(iconElement, iconChange) {
     iconChange === "scattered clouds" ||
     iconChange === "broken clouds"
   ) {
-    iconElement.setAttribute("src", "images/cloudy.png");
+    icon = "images/cloudy.png"
   } else if (
     iconChange === "snow" ||
     iconChange === "snowy" ||
@@ -205,14 +204,14 @@ function changeIcon(iconElement, iconChange) {
     iconChange === "heavy snow" ||
     iconChange === "snow storm"
   ) {
-    iconElement.setAttribute("src", "images/snow.png");
+   icon = "images/snow.png"
   } else if (
     iconChange === "sunny" ||
     iconChange === "hot" ||
     iconChange === "clear sky" ||
     iconChange === "sun"
   ) {
-    iconElement.setAttribute("src", "images/sun.png");
+   icon = "images/sun.png"
   } else if (
     iconChange === "windy" ||
     iconChange === "wind" ||
@@ -222,17 +221,18 @@ function changeIcon(iconElement, iconChange) {
     iconChange === "light winds" ||
     iconChange === "very windy"
   ) {
-    iconElement.setAttribute("src", "images/windy.png");
+    icon = "images/windy.png";
   } else if (
     iconChange === "stormy" ||
     iconChange === "storms" ||
     iconChange === "storm" ||
     iconChange === "thunderstorms"
   ) {
-    iconElement.setAttribute("src", "images/lightning.png");
+    icon ="images/lightning.png"
   } else {
-    iconElement.setAttribute("src", "images/rainbow.png");
+  icon = "images/rainbow.png";
   }
+    return icon;
 }
 
-search("New York");
+search("");
