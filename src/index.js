@@ -184,9 +184,10 @@ function changeIcon(iconChange) {
     iconChange === "light rain" ||
     iconChange === "drizzle" ||
     iconChange === "moderate rain" ||
+    iconChange === "showe rain" ||
     iconChange === "heavy rain"
   ) {
-    icon = "images/rain.png"
+    icon = "images/rain.png";
   } else if (
     iconChange === "cloudy" ||
     iconChange === "overcast clouds" ||
@@ -195,7 +196,7 @@ function changeIcon(iconChange) {
     iconChange === "scattered clouds" ||
     iconChange === "broken clouds"
   ) {
-    icon = "images/cloudy.png"
+    icon = "images/cloudy.png";
   } else if (
     iconChange === "snow" ||
     iconChange === "snowy" ||
@@ -204,14 +205,14 @@ function changeIcon(iconChange) {
     iconChange === "heavy snow" ||
     iconChange === "snow storm"
   ) {
-   icon = "images/snow.png"
+    icon = "images/snow.png";
   } else if (
     iconChange === "sunny" ||
     iconChange === "hot" ||
     iconChange === "clear sky" ||
     iconChange === "sun"
   ) {
-   icon = "images/sun.png"
+    icon = "images/sun.png";
   } else if (
     iconChange === "windy" ||
     iconChange === "wind" ||
@@ -226,11 +227,12 @@ function changeIcon(iconChange) {
     iconChange === "stormy" ||
     iconChange === "storms" ||
     iconChange === "storm" ||
+    iconChange === "thunderstorm" ||
     iconChange === "thunderstorms"
   ) {
-    icon ="images/lightning.png"
+    icon = "images/lightning.png";
   } else {
-  icon = "images/rainbow.png";
+    icon = "images/rainbow.png";
   }
     return icon;
 }
