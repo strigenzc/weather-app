@@ -102,11 +102,8 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    changeIcon(response.data.weather[0].description)
   );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
-iconElement = changeIcon(response.data.weather[0].description);
-changeIcon(iconElement, response.data.weather[0].description);
 
   getForecast(response.data.coord);
 }
@@ -234,7 +231,7 @@ function changeIcon(iconChange) {
   } else {
     icon = "images/rainbow.png";
   }
-    return icon;
+  return icon;
 }
 
 search("");
