@@ -22,7 +22,7 @@ ul{
 
 li{
   list-style: none;
-  color rgb:(135, 134, 135);
+  color:(135, 134, 135);
   display: block;
   font-size: 16px;
   font-weight: 100;
@@ -67,7 +67,7 @@ button{
 
 .weather-icon {
   height: 64px;
-  width: 64ox;
+  width: 64px;
   margin-right: 10px;
 }
 
@@ -75,12 +75,6 @@ button{
    position: relative;
    top: -32px;
    color: #34495e; 
-}
-
-.weather-temperature .active{
-color: #34495e;
-text-decoration: none;
-cursor: default;
 }
 
 .weather-temperature .active{
