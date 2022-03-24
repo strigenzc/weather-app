@@ -222,6 +222,9 @@ function changeIcon(iconChange) {
     icon = "images/windy.png";
   } else if (
     iconChange === "stormy" ||
+    iconChange === "mist" ||
+    iconChange === "misty" ||
+    iconChange === "hazy" ||
     iconChange === "storms" ||
     iconChange === "storm" ||
     iconChange === "thunderstorm" ||
