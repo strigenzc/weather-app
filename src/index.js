@@ -214,6 +214,9 @@ function changeIcon(iconChange) {
     iconChange === "windy" ||
     iconChange === "wind" ||
     iconChange === "light wind" ||
+    iconChange === "mist" ||
+    iconChange === "misty" ||
+    iconChange === "hazy" ||
     iconChange === "moderate wind" ||
     iconChange === "heavy wind" ||
     iconChange === "light winds" ||
@@ -222,9 +225,6 @@ function changeIcon(iconChange) {
     icon = "images/windy.png";
   } else if (
     iconChange === "stormy" ||
-    iconChange === "mist" ||
-    iconChange === "misty" ||
-    iconChange === "hazy" ||
     iconChange === "storms" ||
     iconChange === "storm" ||
     iconChange === "thunderstorm" ||
