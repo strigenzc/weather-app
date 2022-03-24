@@ -23,6 +23,7 @@ function formatDate(timestamp) {
   return `Last updated ${day} ${hours}:${minutes}`;
 }
 
+//relates to forecast
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -39,7 +40,6 @@ function formatDay(timestamp) {
   return days[day];
 }
 
-//relates to forecast
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
