@@ -23,7 +23,7 @@ function formatDate(timestamp) {
   return `Last updated ${day} ${hours}:${minutes}`;
 }
 
-//relates to forecast
+//relates to accurate day and time for forecast
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -181,7 +181,7 @@ function changeIcon(iconChange) {
     iconChange === "light rain" ||
     iconChange === "drizzle" ||
     iconChange === "moderate rain" ||
-    iconChange === "showe rain" ||
+    iconChange === "shower rain" ||
     iconChange === "heavy rain"
   ) {
     icon = "images/rain.png";
